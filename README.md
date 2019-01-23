@@ -5,6 +5,7 @@
  * `Can-utils`
  * `Pyserial`
  * `CANard`
+ * `libbluetooth-dev`
 ## Installation
 
 AutoCruise can be installed on any distro of Linux - Debian based is recommended
