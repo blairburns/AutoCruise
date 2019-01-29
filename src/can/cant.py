@@ -4,10 +4,10 @@ from threading import Thread
 
 
 
-#can.running = True
+can.running = True
+can.candump()
 
-
-can.receive()
+#can.receive()
 
 #def dump():
 #	c.candump()
