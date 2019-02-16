@@ -3,7 +3,7 @@
 ## Prerequisites
  * CAN Interface - [CANable](https://canable.io)
  * `Can-utils`
- * `Pyserial`
+ * `PyBluez`
  * `CANard`
  * `libbluetooth-dev`
 ## Installation
@@ -22,7 +22,7 @@ git clone https://github.com/blairburns/AutoCruise.git
 
 ```
 apt-get install can-utils
-pip install Pyserial
+agt-get install python-bluez
 pip install CANard
 ```
 
