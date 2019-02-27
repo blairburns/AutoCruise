@@ -12,8 +12,8 @@ server_sock.listen(1)
 port = server_sock.getsockname()[1]
 
 acceptedConnection = False
-#client_sock
-#client_info
+client_sock = None
+client_info = None
 
 
 uuid = "94f39d29-7d6d-437d-973b-fba39e49d4ee"
@@ -28,15 +28,23 @@ advertise_service( server_sock, "AutoCruise",
 
 def openThreads():
   print("Starting send and receive threads")
+
   
 def startService(q):
     print("Waiting for connection on RFCOMM channel %d" % port)
+    global client_sock, client_info
     client_sock, client_info = server_sock.accept()
-    print("Accepted connection from ", client_info)
+    #server_sock.accept()
+    print("Accepted connection from ") #, client_info)
     acceptedConnection = True
     q.put(acceptedConnection)
+    print(q)
     openThreads()
 
+def sendData(data):
+    #client_sock, client_info = server_sock.accept()
+    client_sock.send(data)
+    test1 = "yes"
 
 def recData():
     try:

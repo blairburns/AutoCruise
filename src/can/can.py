@@ -6,8 +6,13 @@ from canard.hw import socketcan
 running = True;
 
 # Open device connection
-dev = socketcan.SocketCanDev("can0")
-dev.start()
+def start():
+    dev = socketcan.SocketCanDev("can0")
+    dev.start()
+
+
+start()
+
 
 # Receive frame from CAN Interface 
 def receive():
