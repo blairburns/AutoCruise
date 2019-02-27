@@ -24,11 +24,18 @@ advertise_service( server_sock, "AutoCruise",
                    profiles = [ SERIAL_PORT_PROFILE ], 
 #                   protocols = [ OBEX_UUID ] 
                     )
-def startService():
+
+
+def openThreads():
+  print("Starting send and receive threads")
+  
+def startService(q):
     print("Waiting for connection on RFCOMM channel %d" % port)
     client_sock, client_info = server_sock.accept()
     print("Accepted connection from ", client_info)
     acceptedConnection = True
+    q.put(acceptedConnection)
+    openThreads()
 
 
 def recData():
