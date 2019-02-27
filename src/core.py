@@ -6,19 +6,17 @@ import atexit
 print("AutoCruise has started...")
 
 #Mount the CAN interface
+mount.mount()
 
 values = []
-stopEvent = threading.Event()
 
-#def startup():
-mount.mount()
-    #server1.startService()
-
-def bt(q, stopEvent):
+# Method to init and bluetooth
+def bt(q):
     print("Starting Bluetooth Connection")
     print(q)
     server1.startService()
 
+# Test Method
 def test(q):
     print("test q")
     c = 0
@@ -29,10 +27,12 @@ def test(q):
             c = 0
 
 q = queue.Queue()
-btThread = threading.Thread(target=bt,args=(q,stopEvent))
+
+btThread = threading.Thread(target=bt,args=(q))
 #canThread = threading.Thread(targe)
 testThread = threading.Thread(target=test,args=(q,))
 
+#Start Threads
 btThread.start()
 testThread.start()
 
