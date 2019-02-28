@@ -12,6 +12,8 @@ print("AutoCruise has started...")
 values = []
 acceptedConnection = False
 
+can.start()
+
 sBT_queue = queue.Queue()
 rBT_queue = queue.Queue()
 sCAN_queue = queue.Queue()
@@ -36,18 +38,15 @@ def sendCAN(frame):
 
 def test():
     c = 0
+    #can.start()
     while True:
         print("threaded")
+        frame = can.receive()
         try:
-            sendBT("This is sending") #server1.sendData("Sending test\n", q    
+            sendBT(frame) #server1.sendData("Sending test\n", q    
         except:
-            pass
-	#try:
+            continue
         time.sleep(.1)
-             #   print(q.get())
-            #except:
-             #   print("didn't work")
-
 
 btThread = threading.Thread(target=bt)
 #canThread = threading.Thread(targe)

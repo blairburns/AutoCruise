@@ -5,11 +5,14 @@ from canard.hw import socketcan
 
 running = True;
 
+dev = None
+
 # Open device connection
 def start():
+    global dev
     dev = socketcan.SocketCanDev("can0")
     dev.start()
-
+    print("called")
 
 start()
 
