@@ -4,6 +4,7 @@ import time
 import random
 
 from bluetooth import *
+import queue
 
 server_sock = BluetoothSocket( RFCOMM )
 server_sock.bind(("",PORT_ANY))
@@ -30,21 +31,22 @@ def openThreads():
   print("Starting send and receive threads")
 
   
-def startService(q):
+def startService():
     print("Waiting for connection on RFCOMM channel %d" % port)
     global client_sock, client_info
     client_sock, client_info = server_sock.accept()
     #server_sock.accept()
     print("Accepted connection from ") #, client_info)
     acceptedConnection = True
-    q.put(acceptedConnection)
-    print(q)
+    #q.put(acceptedConnection)
+    #print(q)
     openThreads()
 
-def sendData(data):
+def sendData(data, q):
     #client_sock, client_info = server_sock.accept()
     client_sock.send(data)
-    test1 = "yes"
+    test = "yes this worked"
+    q.put(test)
 
 def recData():
     try:
