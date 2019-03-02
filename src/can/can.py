@@ -14,7 +14,7 @@ def start():
     dev.start()
     print("called")
 
-start()
+#start()
 
 
 # Receive frame from CAN Interface 

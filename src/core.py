@@ -40,7 +40,7 @@ def test():
     c = 0
     #can.start()
     while True:
-        print("threaded")
+        #print("threaded")
         frame = can.receive()
         try:
             sendBT(frame) #server1.sendData("Sending test\n", q    
