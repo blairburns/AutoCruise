@@ -10,7 +10,7 @@ print("AutoCruise has started...")
 #mount.mount()
 
 values = []
-acceptedConnection = False
+btConnected = False
 
 can.start()
 
@@ -29,7 +29,7 @@ def bt(btStatus):
 
 
 def sendBT(data):
-    server.sendData(data, sBT_queue)
+    server.sendData(data)
 
 def sendCAN(frame):
     #nothing yet
@@ -39,21 +39,13 @@ def sendCAN(frame):
 # Test Method
 
 def test():
-    c = 0
-    #can.start()
+    print("is it connected? " + str(btStatus.get()))
     while True:
-        if btStatus.get() == "connected":
-            #n
-            print("threaded")
-            # while btStatus.get() == True: #True
-            #print("threaded")
-            frame = can.receive()
-            try:
-                sendBT(frame) #server1.sendData("Sending test\n", q    
-            except:
-                print("could not send to device")
-                pass
-            time.sleep(.1)
+        print("threaded")
+        frame = can.receive()
+        sendBT(frame)
+        sendBT("sending")
+        time.sleep(.2)
 
 btThread = threading.Thread(target=bt, args=(btStatus,))
 #canThread = threading.Thread(targe)
@@ -61,8 +53,6 @@ btThread = threading.Thread(target=bt, args=(btStatus,))
 
 #Start Threads
 btThread.start()
-#testThread.start()
+
 
 test()
-
-#startBT()

@@ -35,19 +35,15 @@ def startService(btStatus):
     print("Waiting for connection on RFCOMM channel %d" % port)
     global client_sock, client_info
     client_sock, client_info = server_sock.accept()
-    btStatus.put("connected")
-    #server_sock.accept()
-    print("Accepted connection from ") #, client_info)
-    acceptedConnection = True
-    #q.put(acceptedConnection)
-    #print(q)
+    btStatus.put(True)
+    print("Accepted connection from " + str(client_info))
     openThreads()
 
-def sendData(data, q):
+def sendData(data):
     #client_sock, client_info = server_sock.accept()
     client_sock.send(data)
     test = "yes this worked"
-    q.put(test)
+    #q.put(test)
 
 def recData():
     try:
