@@ -11,6 +11,7 @@ print("AutoCruise has started...")
 
 values = []
 btConnected = False
+id = 1552
 
 can.start()
 
@@ -41,11 +42,13 @@ def sendCAN(frame):
 def test():
     print("is it connected? " + str(btStatus.get()))
     while True:
-        print("threaded")
+        #print("threaded")
         frame = can.receive()
-        sendBT(frame)
-        sendBT("sending")
-        time.sleep(.2)
+        if frame[0] == id:
+            f = frame[1]
+            sendBT(str(f[2]) + "\n")
+        #sendBT(str(frame)+ "\n")
+        #time.sleep(.1)
 
 btThread = threading.Thread(target=bt, args=(btStatus,))
 #canThread = threading.Thread(targe)

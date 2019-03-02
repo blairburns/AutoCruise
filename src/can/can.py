@@ -19,8 +19,11 @@ def start():
 
 # Receive frame from CAN Interface 
 def receive():
-	frame = dev.recv()
-	return str(frame)
+        array = []
+        frame = dev.recv()
+        array.append(frame.id)
+        array.append(frame.data)
+        return array # [frame.id, frame.data] # str(frame.id) + "    " + str(frame.data) + "\n"
 
 
 # Send frame to CAN Interface 
