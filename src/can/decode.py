@@ -1,11 +1,11 @@
 from canard import can, bus
-from canard.file import jsondb
+import jsondb
 from canard.hw import socketcan
 
 parser = jsondb.JsonDbParser()
 b = parser.parse('example_db.json')
 
-dev = socketcan.SocketCanDev('vcan0')
+dev = socketcan.SocketCanDev('can0')
 dev.start()
 
 while True:
