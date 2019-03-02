@@ -35,7 +35,7 @@ def startService(btStatus):
     print("Waiting for connection on RFCOMM channel %d" % port)
     global client_sock, client_info
     client_sock, client_info = server_sock.accept()
-    btStatus.put(client_info)
+    btStatus.put("connected")
     #server_sock.accept()
     print("Accepted connection from ") #, client_info)
     acceptedConnection = True

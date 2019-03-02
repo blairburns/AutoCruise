@@ -22,7 +22,7 @@ btStatus = queue.Queue()
 q = queue.Queue()
 
 # Method to init and bluetooth
-def bt():
+def bt(btStatus):
     print("Starting Bluetooth Connection")
     server.startService(btStatus)
     print("Client info: " + str(btStatus.get()))
@@ -41,19 +41,19 @@ def sendCAN(frame):
 def test():
     c = 0
     #can.start()
-<<<<<<< HEAD
     while True:
-        #print("threaded")
-=======
-    while btStatus.get() == True: #True
-        print("threaded")
->>>>>>> d340d8874d90cde54cf44506e597809c9f540a3e
-        frame = can.receive()
-        try:
-            sendBT(frame) #server1.sendData("Sending test\n", q    
-        except:
-            continue
-        time.sleep(.1)
+        if btStatus.get() == "connected":
+            #n
+            print("threaded")
+            # while btStatus.get() == True: #True
+            #print("threaded")
+            frame = can.receive()
+            try:
+                sendBT(frame) #server1.sendData("Sending test\n", q    
+            except:
+                print("could not send to device")
+                pass
+            time.sleep(.1)
 
 btThread = threading.Thread(target=bt, args=(btStatus,))
 #canThread = threading.Thread(targe)
